@@ -78,6 +78,11 @@ void WiFiSettingServer::begin(void) {
   loadWiFiInfo();
   WiFi.mode(WIFI_AP_STA);
   WiFi.softAP(_ap_name);
+
+  IPAddress ip(192, 168, 0, 4);
+  IPAddress mask(255, 255, 255, 0);
+  WiFi.softAPConfig(ip, ip, mask);
+
   int net_count = WiFi.scanComplete();
   if (net_count == -2) {
     WiFi.scanNetworks(true);
